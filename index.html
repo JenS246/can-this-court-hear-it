@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#c6d7c1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1f302b" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="description"
+      content="A quick classroom card game about subject-matter and personal jurisdiction."
+    />
+    <title>Can This Court Hear It?</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="cards.js" defer></script>
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <div class="desk-marks" aria-hidden="true">
+      <span class="case-number">CIV. FILE 28</span>
+      <span class="binder-hole binder-hole-one"></span>
+      <span class="binder-hole binder-hole-two"></span>
+      <span class="corner-stamp">FILED</span>
+    </div>
+
+    <main class="game-shell">
+      <section id="home-screen" class="home-screen" aria-labelledby="game-title">
+        <div class="folder-tab" aria-hidden="true">JURISDICTION</div>
+        <div class="cover-sheet">
+          <span class="court-mark" aria-hidden="true">§</span>
+          <div class="cover-copy">
+            <h1 id="game-title">CAN THIS COURT HEAR IT?</h1>
+            <p class="subtitle">A Jurisdiction Game</p>
+            <p class="intro">Read the case. Decide whether the court has authority to hear it.</p>
+            <button id="start-button" class="primary-button" type="button">START GAME</button>
+          </div>
+          <span class="cover-note" aria-hidden="true">10 case files</span>
+        </div>
+      </section>
+
+      <section id="game-screen" class="game-screen" aria-label="Jurisdiction game" hidden>
+        <header class="game-header">
+          <div class="series-lockup" aria-label="Jurisdiction file">
+            <span class="family-mark" aria-hidden="true">§?</span>
+            <span>JURISDICTION<br />FILE</span>
+          </div>
+          <div class="game-meta" aria-label="Game progress">
+            <div class="meta-copy">
+              <span id="progress">1 / 10</span>
+              <span id="score">0 right</span>
+            </div>
+            <div id="progress-marks" class="progress-marks" aria-hidden="true"></div>
+          </div>
+        </header>
+
+        <div id="play-screen" class="play-screen">
+          <article id="case-card" class="case-card" tabindex="-1">
+            <div class="card-heading">
+              <p id="category" class="category">SUBJECT-MATTER JURISDICTION</p>
+              <span id="card-number" class="card-number">FILE 01</span>
+            </div>
+            <div class="case-copy">
+              <p id="scenario" class="scenario"></p>
+              <p id="question" class="question"></p>
+            </div>
+            <div id="feedback" class="feedback" aria-live="polite" aria-atomic="true" hidden>
+              <strong id="feedback-title"></strong>
+              <p id="feedback-text"></p>
+            </div>
+          </article>
+
+          <div id="binary-answers" class="binary-answers" aria-label="Choose an answer">
+            <button class="answer-button yes-button" type="button" data-answer="yes">
+              <kbd aria-hidden="true">Y</kbd>
+              <span>YES, THE COURT<br />CAN HEAR IT</span>
+            </button>
+            <button class="answer-button no-button" type="button" data-answer="no">
+              <kbd aria-hidden="true">N</kbd>
+              <span>NO, THERE'S<br />A PROBLEM</span>
+            </button>
+          </div>
+
+          <div id="challenge-answers" class="challenge-answers" aria-label="Choose the missing fact" hidden></div>
+
+          <button id="next-button" class="next-button" type="button" hidden>
+            NEXT CARD <span aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        <section id="end-screen" class="end-screen" aria-labelledby="end-title" hidden>
+          <div class="result-stamp" aria-hidden="true">ROUND CLOSED</div>
+          <p>FINAL TALLY</p>
+          <h2 id="end-title"><span id="final-score">0</span> CORRECT</h2>
+          <p id="final-answered" class="final-answered">10 answered</p>
+          <p class="takeaway">
+            Keep the two questions separate: authority over the kind of case, and authority over the defendant.
+          </p>
+          <button id="play-again-button" class="primary-button" type="button">PLAY AGAIN</button>
+        </section>
+      </section>
+
+      <noscript>This game needs JavaScript to shuffle case cards and check answers.</noscript>
+    </main>
+  </body>
+</html>
